@@ -40,17 +40,17 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t srinidockerhub87/spring-boot-mongo .'
+                 sh 'docker build -t phanireddy04/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name srini22 -p 2800:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name phani04 -p 2800:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
              steps{
                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                      sh "docker login -u srinidockerhub87 -p ${DOCKER_HUB_CREDENTIALS}"
+                      sh "docker login -u phanireddy04 -p ${DOCKER_HUB_CREDENTIALS}"
             }
-            sh 'docker push srinidockerhub87/spring-boot-mongo'
+            sh 'docker push phanireddy04/spring-boot-mongo'
         }
       }
         
